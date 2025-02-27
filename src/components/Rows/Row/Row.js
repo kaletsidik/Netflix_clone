@@ -18,16 +18,15 @@ const Row = ({ title, fetchUrl, isLargeRow }) => {
   useEffect(() => {
     (async () => {
       try {
-        console.log(fetchUrl);
+        console.log("Fetching URL:", fetchUrl);
         const request = await axios.get(fetchUrl);
-        console.log(request);
+        console.log("Response data:", request.data);
         setMovie(request.data.results);
       } catch (error) {
-        console.log("error", error);
+        console.error("Error fetching data:", error.message);
       }
     })();
   }, [fetchUrl]);
-
   const handleClick = (movie) => {
     if (trailerUrl) {
       setTrailerUrl("");
